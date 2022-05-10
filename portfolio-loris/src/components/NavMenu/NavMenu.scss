@@ -1,6 +1,8 @@
 .nav-menu {
   background-color: #5a6277;
   height: 3em;
+  position: absolute;
+  top: 0;
 
   .list-menu {
     margin: 0;
@@ -12,10 +14,10 @@
 
     .animation {
       position: absolute;
-      height: 100%;
-      top: 0;
+      height: 3px;
+      bottom: 0;
       left: 0px;
-      z-index: 0;
+      z-index: 1;
       background-color: #1bbc9b;
       width: 150px;
       transition: all .5s ease 0s;
@@ -51,6 +53,11 @@
       font-size: 0.8em;
       letter-spacing: 1px;
       z-index: 1;
+      transition: 300ms;
+
+      &:hover {
+        background-color: #4b5469;
+      }
 
       svg {
         width: 30px;
@@ -63,14 +70,4 @@
       animation: 1s forwards test linear;
     }
   }
-}
-
-@keyframes test {
-  0% {
-    border: none;
-  }
-  100% {
-    border-bottom: 2px solid #1bbc9b;
-  }
-  
 }
