@@ -3,8 +3,11 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import './Skills.scss';
 import { NavLink } from 'react-router-dom';
 import { motion } from "framer-motion";
+import { useState } from 'react';
 
 function Skills() {
+  const [labelLeftIsActive, setLabelLeftIsActive] = useState(false);
+  const [labelRightIsActive, setLabelRightIsActive] = useState(false);
   return (
     <motion.div 
       className="skills"
@@ -26,8 +29,30 @@ function Skills() {
         <h1>Compétences</h1>
         <h2>Réact</h2>
       </motion.div>
-      <NavLink to='/about'><BsChevronLeft className='btn-left btn-nav-lr'/></NavLink>
-      <NavLink to='/'><BsChevronRight className='btn-right btn-nav-lr'/></NavLink>
+      <NavLink 
+        to='/about'
+        onMouseEnter={() => {
+          setLabelLeftIsActive(true);
+        }}
+        onMouseLeave={() => {
+          setLabelLeftIsActive(false);
+        }}
+      >
+        <BsChevronLeft className='btn-left btn-nav-lr'/>
+      </NavLink>
+      <NavLink 
+        to='/'
+        onMouseEnter={() => {
+          setLabelRightIsActive(true);
+        }}
+        onMouseLeave={() => {
+          setLabelRightIsActive(false);
+        }}
+      >
+          <BsChevronRight className='btn-right btn-nav-lr'/>
+      </NavLink>
+      <span className={labelLeftIsActive ? 'page-name left active' : 'page-name left'}>A propos</span>
+      <span className={labelRightIsActive ? 'page-name right active' : 'page-name right'}>Accueil</span>
     </motion.div>
   );
 }

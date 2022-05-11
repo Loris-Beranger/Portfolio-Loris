@@ -3,8 +3,10 @@ import { BsChevronRight } from "react-icons/bs";
 import './About.scss';
 import { NavLink } from 'react-router-dom';
 import { motion } from "framer-motion";
+import { useState } from 'react';
 
 function About() {
+  const [labelRightIsActive, setLabelRightIsActive] = useState(false);
   return (
     <motion.div 
       className="about"
@@ -25,7 +27,18 @@ function About() {
       >
         <h1>A propos</h1>
       </motion.div>
-      <NavLink to='/skills'><BsChevronRight className='btn-right btn-nav-lr'/></NavLink>
+      <NavLink 
+        to='/skills'
+        onMouseEnter={() => {
+          setLabelRightIsActive(true);
+        }}
+        onMouseLeave={() => {
+          setLabelRightIsActive(false);
+        }}
+      >
+          <BsChevronRight className='btn-right btn-nav-lr'/>
+      </NavLink>
+      <span className={labelRightIsActive ? 'page-name right active' : 'page-name right'}>Compétences</span>
     </motion.div>
   );
 }

@@ -3,8 +3,11 @@ import { BsChevronLeft } from "react-icons/bs";
 import './Contact.scss';
 import { NavLink } from 'react-router-dom';
 import { motion } from "framer-motion";
+import { useState } from 'react';
 
 function Contact() {
+  const [labelLeftIsActive, setLabelLeftIsActive] = useState(false);
+
   return (
     <motion.div 
       className="contact"
@@ -26,7 +29,18 @@ function Contact() {
         <h1>Contact</h1>
         <h2>envoyer</h2>
       </motion.div>
-      <NavLink to='/works'><BsChevronLeft className='btn-left btn-nav-lr'/></NavLink>
+      <NavLink 
+        to='/works'
+        onMouseEnter={() => {
+          setLabelLeftIsActive(true);
+        }}
+        onMouseLeave={() => {
+          setLabelLeftIsActive(false);
+        }}
+      >
+        <BsChevronLeft className='btn-left btn-nav-lr'/>
+      </NavLink>
+      <span className={labelLeftIsActive ? 'page-name left active' : 'page-name left'}>Projets</span>
     </motion.div>
   );
 }
